@@ -5,6 +5,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 const pool = require('./config/db');
+const applicationRoutes = require('./routes/applicationRoutes');
+
 require('dotenv').config();
 require('./config/passport'); // We'll create this soon
 
@@ -36,6 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', require('./routes/auth'));
+app.use('/api/applications', applicationRoutes);
 
 // Basic test route
 app.get('/', (req, res) => {
